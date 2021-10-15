@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        *{
+            font-family: 'Roboto', sans-serif;
+            background-image: url("	https://assets.nflxext.com/ffe/siteui/vlv3/68c9706…gnuptwoweeks-perspective_alpha_website_medium.jpg");
+        }
+        .searchbr{
+            height: 50px;
+            width: auto;
+            /* background-color: yellow; */
+            margin: auto;
+            text-align: justify;
+            padding-top: 20px;
+        }
+        .searchbr > input{
+            height: 30px;
+            width: 500px;
+            /* border-radius: 100px; */
+        }
+        button{
+            height: 35px;
+        }
+        #moviediv{
+            text-align: justify;
+            border: 1px solid black;
+            background-color: cornsilk;
+            
+        }
+        
+        img{
+            width: 300px;
+            height: 350px;
+        }
+
+        .maindiv{
+            display: flex;
+            text-align: justify;
+            padding-left: 250px;
+            padding-top: 50px;
+            border: 1px solid rgb(230, 230, 230);
+            width: 750px;
+            margin:auto;
+            
+        }
+        .maindiv >div >div {
+            padding: 5px;
+            margin: auto;
+            
+            
+        }
+        .box{
+            display: grid;
+            grid-template-columns: 15% 5% 5% 5% 5% 50%;
+            grid-gap: 3%;
+            background-color: #0c111b;
+            color: rgb(255, 255, 255);
+            font-weight: bolder;
+
+        }
+        .div1{
+            padding-top: 25px;
+        }
+        .div2{
+            padding-top: 5px;
+        }
+        .himg{
+            height: 50px;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="" style="text-align: center;">
+        <div style="color: cornflowerblue;">
+        <h1>Movie Search Engine</h1>
+    </div> -->
+    <div class="box">
+        <div class="div2"><img src="https://campaigns.hotstar.com/test-directory/disney-hotstar-logo.png" class="himg"></div>
+        <div class="div1">TV</div>
+        <div class="div1">Movie</div>
+        <div class="div1">Sport</div>
+        <div class="div1">Sport</div>   
+        <div class="searchbr">
+            <input type="text" id="movie" placeholder="Enter Movie Name" required/>
+        <button onclick="getmoviedata()">Search Movie</button>
+        </div>
+
+    </div>
+    <hr>
+    <div class="maindiv">
+            
+        <div id="moviediv">
+
+        </div>
+        <div id="posterdiv">
+
+        </div>
+
+    </div>
+
+    
+    
+
+    <script>
+        let parent=document.getElementById("posterdiv")
+        let parentp=document.getElementById("moviediv")
+        async function getmoviedata(){
+        let moviename=document.getElementById("movie").value;
+        console.log("start")
+        let res= await fetch(`http://www.omdbapi.com/?t=${moviename}&type=movie&apikey=810ed14a`)
+        let data=await res.json();
+        console.log(data)
+        console.log("end")
+        showmovie(data)
+    }
+
+   function showmovie(data){
+       movie.innerHTML="";
+       moviediv.innerHTML="";
+       posterdiv.innerHTML="";
+    if(data.Error){
+        let img=document.createElement("img");
+        img.src="https://thumbs.gfycat.com/SelfassuredSparklingAlpinegoat-size_restricted.gif"
+        
+        parent.append(img,data.Error)
+    }else{
+
+        let img=document.createElement("img");
+
+        img.src=data.Poster;
+        let namebar=document.createElement("div")
+        let langbar=document.createElement("div")
+        let yearbar=document.createElement("div")
+        let actorbar=document.createElement("div")
+        let productbar=document.createElement("div")
+        let awardbar=document.createElement("div")
+        let ratingbar=document.createElement("div")
+        let recbar=document.createElement("div")
+        img.append("img"+data.Poster)
+        namebar.append("Name : "+ data.Title)
+        langbar.append("language : "+data.Language)
+        yearbar.append("Released Year : "+data.Year)
+        actorbar.append("Actors In Movies : "+data.Actors)
+        productbar.append("Production Of : "+data.Production)
+        awardbar.append("Awards : "+data.Awards)
+        ratingbar.append("Ratings : "+data.imdbRating)
+        if(data.imdbRating >= 8.0){
+            console.log("recommended")
+            recbar.append("recommended")
+            recbar.style.backgroundColor="red";
+            recbar.style.color="yellow";
+            parent.append(recbar,namebar,langbar,yearbar,actorbar,productbar,awardbar,ratingbar)
+            parentp.append(img)
+        }else{
+            parent.append(namebar,langbar,yearbar,actorbar,productbar,awardbar,ratingbar)
+            parentp.append(img)
+        }
+          }
+        }
+    </script>
+</body>
+</html>

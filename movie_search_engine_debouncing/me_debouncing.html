@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: #0c111b;
+        color:white;
+    }
+    input {
+      width: 400px;
+      border-top: 1px solid #0c111b;
+      border-right: 1px solid #0c111b;
+      border-left: 1px solid #0c111b;
+        background-color: transparent;
+        color: rgb(230, 230, 230);
+        margin-top: 25px;
+        margin-left: 50px;
+    }
+    input:focus{
+        border-top: 1px solid #0c111b;
+      border-right: 1px solid #0c111b;
+      border-left: 1px solid #0c111b;
+    
+    }
+    #movies {
+      height: 200px;
+      width: 406px;
+      border: 1px solid #0c111b;
+      /* overflow: visible; */
+      overflow: overlay;
+      overflow-y: overlay;
+      overflow-x: hidden;
+      border: none;
+      display: grid;
+      grid-template-columns: auto auto;
+      row-gap: 10px;
+      z-index: -1;
+      padding-left: 100px;
+      margin-left: 570px;
+      color: white;
+      background-color:transparent
+    }
+
+     #moviediv {
+        display: grid;
+        grid-template-columns: auto auto;
+        background-color: aqua;
+    } 
+    /* #moviediv > img{
+        height: 100px;
+        width: 100px;
+        background-color: aqua;
+    } */
+    .maindiv{
+            display: flex;
+            text-align: justify;
+            padding-left: 250px;
+            padding-top: 50px;
+            border: 1px solid transparent;
+            width: 750px;
+            margin:auto;
+            z-index: -1;
+            margin-top: -200px;
+            
+            
+        }
+        #moviediv > img{
+            height: 400px;
+            width: 300px;
+            border: 1px solid white ;
+            
+        }
+        .box{
+            display: grid;
+            grid-template-columns: 15% 4% 4% 4% 4% 35% 7% 5%;
+            grid-gap: 3%;
+            background-color: #0c111b;
+            color: rgb(255, 255, 255);
+            font-weight: bolder;
+
+        }
+        .div1{
+            padding-top: 25px;
+        }
+        .div2{
+            padding-top: 5px;
+        }
+        .himg{
+            height: 50px;
+            width: auto;
+        }
+        .btn{
+            background-color: #1f80e0;
+            color: white;
+            margin-top: 25px;
+            width: 120px;
+            border: 1px solid #1f80e0;
+            font-size: 18px;
+            border-radius: 7px;
+            
+        }
+        
+  </style>
+  <body>
+      <div class="box">
+        <div class="div2"><img src="https://campaigns.hotstar.com/test-directory/disney-hotstar-logo.png" class="himg"></div>
+        <div class="div1">TV</div>
+        <div class="div1">Movie</div>
+        <div class="div1">Sport</div>
+        <div class="div1">Sport</div>   
+        <div class="searchbr">
+            <input oninput="debounce(main,1000)" type="text" id="movie" placeholder="Search Here...!" />
+
+        </div>
+        <div><button class="btn"><b>SUBSCRIBE</b></button> </div>
+        <div class="div1">LOGIN</div>
+    </div>
+    <hr>
+    
+    <div id="movies"></div>
+
+    <div class="maindiv">
+            
+        <div id="moviediv">
+
+        </div>
+        <div id="posterdiv">
+
+        </div>
+
+    </div>
+
+</body>
+    <script>
+        var timerId;
+       var moviesdiv=document.getElementById("movies")
+        async function getdata(moviename){
+            // moviename=document.getElementById("movie").value
+            // moviename="spy"
+            let res=await fetch(`http://www.omdbapi.com/?s=${moviename}&apikey=810ed14a`)
+            let data=await res.json()
+            // console.log(data.imdbID)
+            appenddata(data.Search)
+            
+        
+        }
+        
+        function appenddata(movies){
+            if(movies===undefined){
+            return false;
+
+        }
+
+        moviesdiv.innerHTML=null;
+        movies.forEach(function (movie){
+
+            
+        let img=document.createElement("img");
+
+        img.src=movie.Poster;
+        img.style.width="80px";
+        let p=document.createElement("div")
+        p.innerText=movie.Title;
+
+        p.onclick=function(){
+            displaymovie(movie.imdbID)
+        }
+        
+        moviesdiv.append(img,p)
+    });
+        }
+
+        async function main(){
+        let name=document.getElementById("movie").value;
+        if(name.length <3){
+            return false;
+        }
+        let res=await getdata(name)
+        let movie_data=res.Search;
+        appendMovie(movie_data)
+        
+    }
+
+    
+
+ function debounce(func,delay){
+    if(timerId){
+        clearTimeout(timerId)
+    }    
+    
+    timerId=setTimeout(function(){
+            func();
+        },delay);
+    }
+
+
+    async function displaymovie(movie_id){
+        moviesdiv.innerHTML=null;
+        console.log(movie_id)
+        let res=await fetch(`http://www.omdbapi.com/?i=${movie_id}&apikey=810ed14a`)
+        let data=await res.json()
+        showmovie(data)
+    }
+
+         let parent=document.getElementById("posterdiv")
+        let parentp=document.getElementById("moviediv")
+
+   function showmovie(data){
+
+       movie.innerHTML="";
+       moviediv.innerHTML="";
+       posterdiv.innerHTML="";
+    if(data.Error){
+        let img=document.createElement("img");
+        img.src="https://thumbs.gfycat.com/SelfassuredSparklingAlpinegoat-size_restricted.gif"
+        
+        parent.append(img,data.Error)
+    }else{
+
+        let img=document.createElement("img");
+
+        img.src=data.Poster;
+        let namebar=document.createElement("div")
+        let langbar=document.createElement("div")
+        let yearbar=document.createElement("div")
+        let actorbar=document.createElement("div")
+        let productbar=document.createElement("div")
+        let awardbar=document.createElement("div")
+        let ratingbar=document.createElement("div")
+        let recbar=document.createElement("div")
+        img.append("img"+data.Poster)
+        namebar.append("Name : "+ data.Title)
+        langbar.append("language : "+data.Language)
+        yearbar.append("Released Year : "+data.Year)
+        actorbar.append("Actors In Movies : "+data.Actors)
+        productbar.append("Production Of : "+data.Production)
+        awardbar.append("Awards : "+data.Awards)
+        ratingbar.append("Ratings : "+data.imdbRating)
+        if(data.imdbRating >= 8.0){
+            console.log("recommended")  
+            recbar.append("recommended")
+            recbar.style.backgroundColor="red";
+            recbar.style.color="yellow";
+            parent.append(recbar,namebar,langbar,yearbar,actorbar,productbar,awardbar,ratingbar)
+            parentp.append(img)
+        }else{
+            parent.append(namebar,langbar,yearbar,actorbar,productbar,awardbar,ratingbar)
+            parentp.append(img)
+        }
+          }
+        }
+    </script>
+</body>
+</html>
