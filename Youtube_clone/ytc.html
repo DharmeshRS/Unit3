@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    
+    <title>Document</title>
+    <style>
+      body{
+        font-family: 'Roboto', sans-serif;
+      }
+        .header {
+          position: relative;
+        height: 50px;
+        /* background-color: blue; */
+        border-bottom:1px solid rgb(228, 228, 228);
+        display: grid;
+        grid-template-columns:200px 800px 50px 100px auto auto auto auto auto;
+      }
+      .header2 {
+          position: relative;
+        height: 50px;
+        /* background-color: blue; */
+        border-bottom:1px solid rgb(228, 228, 228);
+        display: grid;
+        grid-template-columns:165px auto auto auto auto auto auto auto auto ;
+        gap: 10px;
+        margin-top: 10px;
+        text-align: center;
+        
+      }
+      
+      .body {
+        position: absolute;
+        top: 59px;
+        right: 0;
+        bottom: 0;
+        left: 9px;
+        display: flex;
+        margin-top: 5px;
+        padding-top: 10px;
+      }
+      
+      .sidebar {
+        width: 170px;
+        background-color: rgb(255, 255, 255);
+        height: 60px;
+        
+      }
+      
+      .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-left: 180px;
+      }
+      
+      .content {
+        flex: 1;
+        display: flex;
+      }
+      
+      .column {
+        padding: 20px;
+        border-right: 1px solid #999;
+      }
+      .btn{
+          width: 100px;
+          padding-bottom: 5px;
+          /* border-left: 00.2px solid white; */
+          border-color:0.5px gray;
+      }
+      /* .btn > img{
+        margin-top: -5px;
+          width: 20px;
+          height: 25px;
+      } */
+      #search{
+          width: 68%;
+          padding-top: 6px;
+          padding-bottom: 5px;
+          margin-top: 5px;
+          margin-left: 130px;
+          border-color:0.5px gray;
+          
+      }
+      .ytlogo{
+        width: 170px; 
+        height: 80px;
+        margin-top: -20px;
+      }
+      .iconsize{
+        width: 30px;
+        font-size:38px;
+        margin-right:20px;
+        margin-bottom: -7px;
+        text-align: center;
+        padding-left: 5px;
+        box-sizing: border-box;
+      }
+      .navbaricons{
+          width: 32px;
+          margin-top: 5px;
+      }
+      .headertext{
+        background-color: rgb(184, 180, 180);
+        /* color: honeydew; */
+        border-radius: 30px;
+        text-align: center;
+        /* margin-bottom: 30px; */
+        height: 30px;
+        font-size: smaller;
+        padding-top: 10px;
+        
+       
+
+      }
+      #vid{
+        width: auto;
+      }
+        #videos {
+            display: grid;
+            grid-template-columns: 280px 280px 280px 280px;
+            gap: 10px;
+        }
+        #videodata {
+            display: grid;
+            grid-template-columns: 280px 280px 280px 280px;
+            gap: 10px;
+            
+        }
+        /* #videos > div{
+            width: 100px;
+            height: 100px;
+        } */
+        #vid{
+            width: auto;
+            margin-top: 20px;
+        }
+        iframe{
+            width: 250px;
+            height: 150px;
+        }
+        #videos > div>p{
+          height: 80px;
+          overflow:hidden;
+          font-size: 15px;
+        }
+
+        .imgsize{
+          width: 20px;
+          height: 20px;
+          margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+    
+      <div class="header">
+        <div>
+            <img src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png" class="ytlogo">
+        </div>
+          <div>
+              <input type="text" id="search" placeholder="Search" ><button class="btn" onclick="searchVideos()"><img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" class="imgsize" ></button>
+          </div>
+          <div>
+            <img src="https://cdn-icons-png.flaticon.com/512/59/59116.png" class="navbaricons">
+          </div>
+          <div>
+
+          </div>
+          <div>
+            <img src="https://cdn-icons.flaticon.com/png/512/4189/premium/4189286.png?token=exp=1634385319~hmac=f12e62c7e977f4dc7b9dad0b8cd0ead8" class="navbaricons">
+          </div>
+          <div>
+            <img src="https://cdn-icons-png.flaticon.com/512/876/876740.png" class="navbaricons" style="width: 25px;margin-top: 8px;">
+          </div>
+          <div>
+            <img src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png" class="navbaricons">
+          </div>
+          <div>
+            <img src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1634385593~hmac=997a9aafe4d2aa1deeb0424c546ab9b1" class="navbaricons">
+          </div>
+
+      </div>
+      
+      
+      <div class="header2">
+        <div class="headertext" style="background-color:white;color: white;" >dsdadada</div>
+        <div class="headertext" style="background-color: black;color: white;">All</div>
+        <div class="headertext">Javascript</div>
+        <div class="headertext">HTML</div>
+        <div class="headertext">Masai School</div>
+        <div class="headertext">Document Object Model</div>
+        <div class="headertext">Computer Science</div>
+
+
+    </div>
+    
+      <div class="body">
+          <div>
+            <div class="sidebar"><img src="https://cdn-icons.flaticon.com/png/512/61/premium/61972.png?token=exp=1634383483~hmac=e5c9d69c2b905d4e09aa0828d3331653" class="iconsize">Home</div>
+        <div class="sidebar"><img src="https://cdn-icons.flaticon.com/png/512/4229/premium/4229877.png?token=exp=1634382380~hmac=eab8008c5e2285d13a937dfba2d38fec" class="iconsize">Explore</div>
+        <div class="sidebar"><img src="https://cdn-icons.flaticon.com/png/512/2989/premium/2989849.png?token=exp=1634381738~hmac=25d57fbdf8ead46ae932e4da5787ba2b" class="iconsize">Subscription</div>
+        <div class="sidebar"><img src="https://cdn-icons.flaticon.com/png/512/2989/premium/2989835.png?token=exp=1634382110~hmac=f82c57c7269d1028de6a54d1862be8aa" class="iconsize">Library</div>
+
+        <div class="sidebar"><img src="https://cdn-icons-png.flaticon.com/512/2089/2089679.png" class="iconsize">Histry</div>
+        <div class="sidebar"><img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" class="iconsize">Watch later</div>
+        <div class="sidebar"><img src="https://cdn-icons-png.flaticon.com/512/633/633759.png" class="iconsize">Liked Videos</div>
+        <div class="sidebar"><img src="https://cdn-icons-png.flaticon.com/512/32/32195.png"  class="iconsize">show more</div>
+          </div>
+        
+      </div>
+        <div class="main">
+          <!-- <div class="page-header">Page Header. Content columns are below.</div>
+          <div class="content">
+            <div class="column">Column 1</div>
+
+          </div> -->
+          <div id="vid">
+            <div id="videos"></div>
+        </div>
+        </div>
+      </div>
+
+      <script src="ytc.js">
+        
+      </script>
+</body>
+</html>

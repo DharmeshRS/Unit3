@@ -41,9 +41,9 @@
       row-gap: 10px;
       z-index: -1;
       padding-left: 100px;
-      margin-left: 570px;
+      margin-left: 470px;
       color: white;
-      background-color:transparent
+      background-color:transparent gray;
     }
 
      #moviediv {
@@ -77,7 +77,7 @@
         }
         .box{
             display: grid;
-            grid-template-columns: 15% 4% 4% 4% 4% 35% 7% 5%;
+            grid-template-columns: 13% 2% 4% 4% 35% 7% 8%;
             grid-gap: 3%;
             background-color: #0c111b;
             color: rgb(255, 255, 255);
@@ -104,21 +104,74 @@
             border-radius: 7px;
             
         }
-        
+        #container{
+            display: flex;
+            overflow-x: auto;
+            
+            height: 365px;
+            
+        }
+        #container img,#showdata img{
+            width: 200px;
+          height: 300px;
+          margin: 5px;
+        }
+        #container >div >p{
+            height: 20px;
+            font-size: small;
+            font-weight: bolder;
+            margin-top: -10px;
+            
+        }
+        #container >div >p:nth-child(3){
+            position: relative;
+            width: 200px;
+            height: 20px;
+            background-color: rgb(255, 255, 255);
+            color: black;
+            /* border-radius: 50%; */
+            text-align: center;
+            margin-top: -337px;
+            /* padding-top: 5px; */
+            margin-left: 5px;
+            
+        }
+
+        #showdata{
+            position: inherit;
+            display: grid;
+            grid-template-columns: auto auto;
+            margin: auto;
+            /* background-color: blue; */
+            /* border: 1px solid black; */
+            /* width: 1024px; */
+        }
+
+        #showdata > div{
+            margin: auto;
+        }
+        .labelid{
+            width: 100px;
+        }
+
+        #userdiv{
+            display: grid;
+            grid-template-columns: auto auto;
+        }
   </style>
   <body>
       <div class="box">
         <div class="div2"><img src="https://campaigns.hotstar.com/test-directory/disney-hotstar-logo.png" class="himg"></div>
         <div class="div1">TV</div>
         <div class="div1">Movie</div>
-        <div class="div1">Sport</div>
+        <!-- <div class="div1">Sport</div> -->
         <div class="div1">Sport</div>   
         <div class="searchbr">
             <input oninput="debounce(main,1000)" type="text" id="movie" placeholder="Search Here...!" />
 
         </div>
         <div><button class="btn"><b>SUBSCRIBE</b></button> </div>
-        <div class="div1">LOGIN</div>
+        <div class="div1" onclick="loginuser()" id="profile">LOGIN</div>
     </div>
     <hr>
     
@@ -134,126 +187,67 @@
         </div>
 
     </div>
+    <div id="section">
+        <div>
+            <h2>Tranding/Popular Movies</h2>
+        </div>
+
+        <div id="container">
+
+        </div>
+    </div>
+    <div>
+        <div id="showdata">
+
+        </div>
+</div>
+<div id="userdiv">
+    <div id="signupdiv">
+        <div>
+            <div id="msgdiv"></div>
+            <div>
+                <form action="" onsubmit="signup(event)"  id="signup-form">
+                    <h2>SignUp</h2>
+                    <label for="">Name</label>
+                    <input type="text" id="name" placeholder="Name"/><br>
+                    <label for="">Email</label>
+                    <input type="email" id="email" placeholder="Email"/><br>
+                    <label for="">username</label>
+                    <input type="text" id="username" placeholder="username"/><br>
+                    <label for="">Password</label>
+                    <input type="text" id="password" placeholder="password"/><br>
+                    <label for="">Mobile No</label>
+                    <input type="text" id="mobile" placeholder="mobile"/><br>
+                    <label for="">Description</label>
+                    <input type="text" id="description" placeholder="desc"/><br>
+    
+                    <button style="margin-left:250px;margin-top: 20px;">SignUp</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div id="signindiv">
+            <div>
+                <form action="" onsubmit="login(event)"  id="login-form">
+                    <h2>login</h2>
+                    
+                    <label for="">username</label>
+                    <input type="text" id="username" placeholder="username"/><br>
+                    <label for="">Password</label>
+                    <input type="text" id="password" placeholder="password"/><br>
+    
+                    <button style="margin-left:250px;margin-top: 20px;">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 </body>
-    <script>
-        var timerId;
-       var moviesdiv=document.getElementById("movies")
-        async function getdata(moviename){
-            // moviename=document.getElementById("movie").value
-            // moviename="spy"
-            let res=await fetch(`http://www.omdbapi.com/?s=${moviename}&apikey=810ed14a`)
-            let data=await res.json()
-            // console.log(data.imdbID)
-            appenddata(data.Search)
-            
-        
-        }
-        
-        function appenddata(movies){
-            if(movies===undefined){
-            return false;
+    <script src="debounce.js">
 
-        }
-
-        moviesdiv.innerHTML=null;
-        movies.forEach(function (movie){
-
-            
-        let img=document.createElement("img");
-
-        img.src=movie.Poster;
-        img.style.width="80px";
-        let p=document.createElement("div")
-        p.innerText=movie.Title;
-
-        p.onclick=function(){
-            displaymovie(movie.imdbID)
-        }
-        
-        moviesdiv.append(img,p)
-    });
-        }
-
-        async function main(){
-        let name=document.getElementById("movie").value;
-        if(name.length <3){
-            return false;
-        }
-        let res=await getdata(name)
-        let movie_data=res.Search;
-        appendMovie(movie_data)
-        
-    }
-
-    
-
- function debounce(func,delay){
-    if(timerId){
-        clearTimeout(timerId)
-    }    
-    
-    timerId=setTimeout(function(){
-            func();
-        },delay);
-    }
-
-
-    async function displaymovie(movie_id){
-        moviesdiv.innerHTML=null;
-        console.log(movie_id)
-        let res=await fetch(`http://www.omdbapi.com/?i=${movie_id}&apikey=810ed14a`)
-        let data=await res.json()
-        showmovie(data)
-    }
-
-         let parent=document.getElementById("posterdiv")
-        let parentp=document.getElementById("moviediv")
-
-   function showmovie(data){
-
-       movie.innerHTML="";
-       moviediv.innerHTML="";
-       posterdiv.innerHTML="";
-    if(data.Error){
-        let img=document.createElement("img");
-        img.src="https://thumbs.gfycat.com/SelfassuredSparklingAlpinegoat-size_restricted.gif"
-        
-        parent.append(img,data.Error)
-    }else{
-
-        let img=document.createElement("img");
-
-        img.src=data.Poster;
-        let namebar=document.createElement("div")
-        let langbar=document.createElement("div")
-        let yearbar=document.createElement("div")
-        let actorbar=document.createElement("div")
-        let productbar=document.createElement("div")
-        let awardbar=document.createElement("div")
-        let ratingbar=document.createElement("div")
-        let recbar=document.createElement("div")
-        img.append("img"+data.Poster)
-        namebar.append("Name : "+ data.Title)
-        langbar.append("language : "+data.Language)
-        yearbar.append("Released Year : "+data.Year)
-        actorbar.append("Actors In Movies : "+data.Actors)
-        productbar.append("Production Of : "+data.Production)
-        awardbar.append("Awards : "+data.Awards)
-        ratingbar.append("Ratings : "+data.imdbRating)
-        if(data.imdbRating >= 8.0){
-            console.log("recommended")  
-            recbar.append("recommended")
-            recbar.style.backgroundColor="red";
-            recbar.style.color="yellow";
-            parent.append(recbar,namebar,langbar,yearbar,actorbar,productbar,awardbar,ratingbar)
-            parentp.append(img)
-        }else{
-            parent.append(namebar,langbar,yearbar,actorbar,productbar,awardbar,ratingbar)
-            parentp.append(img)
-        }
-          }
-        }
     </script>
 </body>
 </html>
