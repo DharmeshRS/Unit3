@@ -341,7 +341,7 @@
                 .catch((res)=>{
                     console.log(res)
                 })
-
+                
 
             }
             // error: true, message: 'Registration failed, user already exists'}error: truemessage: "Registration failed, user already exists"[[Prototype]]: Object
