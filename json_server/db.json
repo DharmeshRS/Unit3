@@ -12,20 +12,13 @@
     },
     {
       "id": 17,
-      "name": "vannila",
-      "price": 6,
-      "active": true
-    },
-    {
-      "id": "18",
-      "name": "food-recipe",
-      "price": "123"
+      "name": "vannila IceCream",
+      "price": "200"
     },
     {
       "id": 8,
-      "name": "tea",
-      "price": 7,
-      "active": true
+      "name": "coffee",
+      "price": "10"
     },
     {
       "id": "9",
@@ -36,6 +29,11 @@
       "id": "10",
       "name": "Milk",
       "price": "55"
+    },
+    {
+      "id": "11",
+      "name": "tea",
+      "price": "7"
     }
   ]
 }
