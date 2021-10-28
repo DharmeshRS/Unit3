@@ -8,156 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    
-    <title>Document</title>
-    <style>
-      body{
-        font-family: 'Roboto', sans-serif;
-      }
-        .header {
-          position: relative;
-        height: 50px;
-        /* background-color: blue; */
-        border-bottom:1px solid rgb(228, 228, 228);
-        display: grid;
-        grid-template-columns:200px 800px 50px 100px auto auto auto auto auto;
-      }
-      .header2 {
-          position: relative;
-        height: 50px;
-        /* background-color: blue; */
-        border-bottom:1px solid rgb(228, 228, 228);
-        display: grid;
-        grid-template-columns:165px auto auto auto auto auto auto auto auto ;
-        gap: 10px;
-        margin-top: 10px;
-        text-align: center;
-        
-      }
-      
-      .body {
-        position: absolute;
-        top: 59px;
-        right: 0;
-        bottom: 0;
-        left: 9px;
-        display: flex;
-        margin-top: 5px;
-        padding-top: 10px;
-      }
-      
-      .sidebar {
-        width: 170px;
-        background-color: rgb(255, 255, 255);
-        height: 60px;
-        
-      }
-      
-      .main {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        margin-left: 180px;
-      }
-      
-      .content {
-        flex: 1;
-        display: flex;
-      }
-      
-      .column {
-        padding: 20px;
-        border-right: 1px solid #999;
-      }
-      .btn{
-          width: 100px;
-          padding-bottom: 5px;
-          /* border-left: 00.2px solid white; */
-          border-color:0.5px gray;
-      }
-      /* .btn > img{
-        margin-top: -5px;
-          width: 20px;
-          height: 25px;
-      } */
-      #search{
-          width: 68%;
-          padding-top: 6px;
-          padding-bottom: 5px;
-          margin-top: 5px;
-          margin-left: 130px;
-          border-color:0.5px gray;
-          
-      }
-      .ytlogo{
-        width: 170px; 
-        height: 80px;
-        margin-top: -20px;
-      }
-      .iconsize{
-        width: 30px;
-        font-size:38px;
-        margin-right:20px;
-        margin-bottom: -7px;
-        text-align: center;
-        padding-left: 5px;
-        box-sizing: border-box;
-      }
-      .navbaricons{
-          width: 32px;
-          margin-top: 5px;
-      }
-      .headertext{
-        background-color: rgb(184, 180, 180);
-        /* color: honeydew; */
-        border-radius: 30px;
-        text-align: center;
-        /* margin-bottom: 30px; */
-        height: 30px;
-        font-size: smaller;
-        padding-top: 10px;
-        
-       
-
-      }
-      #vid{
-        width: auto;
-      }
-        #videos {
-            display: grid;
-            grid-template-columns: 280px 280px 280px 280px;
-            gap: 10px;
-        }
-        #videodata {
-            display: grid;
-            grid-template-columns: 280px 280px 280px 280px;
-            gap: 10px;
-            
-        }
-        /* #videos > div{
-            width: 100px;
-            height: 100px;
-        } */
-        #vid{
-            width: auto;
-            margin-top: 20px;
-        }
-        iframe{
-            width: 250px;
-            height: 150px;
-        }
-        #videos > div>p{
-          height: 80px;
-          overflow:hidden;
-          font-size: 15px;
-        }
-
-        .imgsize{
-          width: 20px;
-          height: 20px;
-          margin-top: 2px;
-        }
-    </style>
+<link rel="stylesheet" href="ytc.css">
+    <title>Youtube</title>
+  
 </head>
 <body>
     
@@ -184,7 +37,7 @@
             <img src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png" class="navbaricons">
           </div>
           <div>
-            <img src="images/user.png" class="navbaricons">
+            <img src="images/user.png" class="navbaricons" id="loginuser" onclick="login()">
           </div>
 
       </div>
@@ -215,6 +68,15 @@
         <div class="sidebar"><img src="https://cdn-icons-png.flaticon.com/512/32/32195.png"  class="iconsize">show more</div>
           </div>
         
+      </div>
+      <div id="logindiv">
+        <div>
+            <label for="">UserName</label>
+            <input type="text" id="username">
+            <label for="">Password</label>
+            <input type="password" id="password">
+            <button onclick="checkuser()"></button>
+        </div>
       </div>
         <div class="main">
           

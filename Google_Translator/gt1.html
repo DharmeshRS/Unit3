@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        .box{
+            display: grid;
+            grid-template-columns: 45% 45%;
+            gap: 5%;
+            /* background-color: blue; */
+            width: 50%;
+            margin:auto;
+            height: 100%;
+            border: 0.2px solid black;
+        }
+        
+        #div1{
+            
+            /* border: 1px solid black; */
+            width: 100%;
+            height: 100%;
+            margin-top: 10px;
+            margin-left: 10px;
+            /* background-color: aqua; */
+        }
+        button{
+            margin-top: 5%;
+            margin-left: 70%;
+            width: 200px;
+            font-weight: 800;
+
+        }
+        .center{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">Translator</div>
+    <div class="box">
+        
+        <div id="div1">
+            <!-- <form action="" onsubmit="sub(event)"  id="myform"> -->
+                <!-- <input type="text" id=""> -->
+                <div>
+                    <select name="" id="select" readonly>
+                        <option value="en">English</option>
+                        <!-- <option value="hi">Hindi</option>
+                        <option value="fr">French</option>
+                        <option value="it">italian</option>
+                        <option value="zh">chinese</option> -->
+                    
+                </select>
+                
+                </div>
+                <div>
+                    <textarea name="" id="name" cols="30" rows="10">
+
+                    </textarea></div>
+                
+                
+                    
+                <!-- <button value="submit">submit</button> -->
+            <!-- </form> -->
+        </div>  
+        <div id="div1">
+            <!-- <form action="" onsubmit="sub(event)"  id="myform"> -->
+                <!-- <input type="text" id=""> -->
+                <div>
+                    <select name="" id="selectt">
+                        <option value="en">English</option>
+                        <option value="hi">Hindi</option>
+                        <option value="fr">French</option>
+                        <option value="it">italian</option>
+                        <option value="zh">chinese</option>
+                    
+                </select>
+                </div>
+                <div><textarea name="" id="send" cols="30" rows="10" readonly></textarea></div>
+                
+                
+                    
+                
+            <!-- </form> -->
+        </div>  
+        <button value="submit" onclick="sub(event)">Translate</button>
+    </div>
+    
+    
+</body>
+<script>
+    async function sub(event){
+        event.preventDefault()
+        var name=document.getElementById("name").value
+        var lang=document.getElementById("selectt").value
+        console.log(name,lang)
+        
+        const res = await fetch("https://libretranslate.de/translate", {
+	    method: "POST",
+	    body: JSON.stringify({
+		q: `${name}`,
+		source:"en",
+		target: `${lang}`
+	}),
+	headers: { "Content-Type": "application/json" }
+});
+
+    var data=await res.json();
+
+    console.log(data.translatedText)
+    showdata(data)
+
+    }
+    var div2=document.getElementById("send")
+function showdata(data){
+    var transdiv=document.createElement("div")
+    // transdiv.textContent=data.translatedText
+    blank()
+    div2.append(data.translatedText)
+}
+
+function blank(){
+    div2.innerText=null;
+}
+</script>
+</html>

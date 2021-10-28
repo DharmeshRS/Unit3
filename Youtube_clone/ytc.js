@@ -56,3 +56,24 @@ vdata.append(div,p)
 videoes.append(vdata)
 //  videodata.append(p)
 }
+function blank(){
+   
+}
+// var loginuser=document.getElementById("loginuser")
+// loginuser.onclick=function(){
+//     login()
+// }
+
+function login(){
+    var viddiv=document.getElementById("vid")
+    viddiv.innerHTML=null;
+    
+    var videos=document.getElementById("videos")
+    videos.innerHTML=null;
+
+    let parentdiv=document.createElement("div")
+    let childdiv=document.createElement("div")
+
+    
+    
+}
