@@ -144,3 +144,20 @@ body{
       height: 20px;
       margin-top: 2px;
     }
+
+    .txtup{
+        font-size:25px;
+        font-weight: bolder;
+        
+    }
+
+    .txtup:hover{
+      background-color: black;
+      color: cornsilk;
+    }
+    .headertext:hover,.header2 >div:hover{
+      background-color: black;
+      color: white;
+    }
+
+    

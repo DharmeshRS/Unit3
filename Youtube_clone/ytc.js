@@ -63,17 +63,33 @@ function blank(){
 // loginuser.onclick=function(){
 //     login()
 // }
+let doc=document.getElementById("loginuser")
+doc.onclick=()=>{
+    window.location.href="login.html"
+}
 
-function login(){
-    var viddiv=document.getElementById("vid")
-    viddiv.innerHTML=null;
-    
-    var videos=document.getElementById("videos")
-    videos.innerHTML=null;
+let reg=document.getElementById("registeruser")
+reg.onclick=()=>{
+    window.location.href="register.html"
+}
 
-    let parentdiv=document.createElement("div")
-    let childdiv=document.createElement("div")
 
-    
-    
+if(localStorage.getItem("ytuser")!=null){
+    var logindata=JSON.parse( localStorage.getItem("ytuser"));
+    console.log((logindata[0].name));
+    var jff=document.getElementById("user");
+    jff.innerHTML=logindata[0].name;
+    jff.style.color="black";
+    jff.style.backgroundColor="white"
+    jff.style.fontSize="25px"
+    // jff.style.backgroundColor="black"
+// hid;
+// var login=document.getElementById("login");
+// login.style.display="none";
+// var bellsign=document.getElementById("bellsign");
+// bellsign.style.display="block";
+// var hiddenfig=document.getElementById("hiddenfig");
+// hiddenfig.style.display="block";
+// var verticalline=document.getElementById("verticalline");
+// verticalline.style.display="block";
 }
